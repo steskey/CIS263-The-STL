@@ -1,4 +1,5 @@
 #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
+#include <algorithm>
 #include "catch.hpp"
 #include "stl_functions.h"
 
@@ -9,7 +10,7 @@
 // to write test cases.
 
 TEST_CASE( "My first test", "[testing, my_tests]" ){
-	// REQUIRE causes the execution to stop
-	// if the test fails.
-	REQUIRE( 1 == 1 );
+	std::vector<int> m { 1, 4, 6, 3, 7, 9, 4, 23, 42, 5, 6 };
+	auto n = copyVec(m);
+	REQUIRE( std::equal( m.begin(), m.end(), n.begin()));
 }
