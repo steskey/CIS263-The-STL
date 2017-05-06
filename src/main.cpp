@@ -9,8 +9,15 @@
 // should always pass.  It is included here to show how
 // to write test cases.
 
-TEST_CASE( "My first test", "[testing, my_tests]" ){
+TEST_CASE( "Vector copy test", "[std::copy]" ){
 	std::vector<int> m { 1, 4, 6, 3, 7, 9, 4, 23, 42, 5, 6 };
 	auto n = copyVec(m);
 	REQUIRE( std::equal( m.begin(), m.end(), n.begin()));
+}
+
+TEST_CASE( "Vector sort test", "[std::sort]" ){
+	std::vector<int> m(100);
+	std::generate(m.begin(), m.end(), []() {return rand() % 1000;});
+	sortVec(m);
+	REQUIRE( std::is_sorted(m.begin(), m.end()) );
 }

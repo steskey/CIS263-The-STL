@@ -9,4 +9,5 @@
 // Hints:  Are they the same size?
 
 std::vector<int> copyVec(const std::vector<int> & oldVector);
+void sortVec(std::vector<int> & oldVector);
 
