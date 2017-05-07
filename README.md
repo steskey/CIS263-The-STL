@@ -14,3 +14,4 @@ Remember:
 ```std::vector<int> copyVec(const std::vector<int> & oldVector);``` - Should produce an exact copy (as far as the ```std::equal``` function is concerned) of the provided ```oldVector```.
 
 ```void sortVec(std::vector<int> & oldVector);``` - Should sort ```oldVector``` in incrementing order using the ```std::sort()``` function.
+```void doubleVec(std::vector<int> & oldVector);``` - Write a function that doubles every number in ```oldVector```.  The function must use the ```std::for_each``` function.

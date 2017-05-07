@@ -1,3 +1,8 @@
 a.out
 bin/
 build/
+src/stl_functions.cpp
+.README.md.swp
+.release_time
+*.swp
+src/stl_functions.cpp
