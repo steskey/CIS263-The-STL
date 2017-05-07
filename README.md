@@ -11,7 +11,7 @@ Remember:
 - don't forget to include libraries.
 - pay attention to the ```HINTS: ``` sections.
 
-1.  ```std::vector<int> copyVec(const std::vector<int> & oldVector);``` - Should produce an exact copy (as far as the ```std::equal``` function is concerned) of the provided ```oldVector```.
+1.  ```std::vector<int> copyVec(const std::vector<int> & oldVector);``` - Should produce an exact copy (as far as the ```std::equal``` function is concerned) of the provided ```oldVector```.  Must use ```std::copy```.
 
 2.  ```void sortVec(std::vector<int> & oldVector);``` - Should sort ```oldVector``` in incrementing order using the ```std::sort()``` function.
 3.  ```void doubleVec(std::vector<int> & oldVector);``` - Write a function that doubles every number in ```oldVector```.  The function must use the ```std::for_each``` function.
