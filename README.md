@@ -2,6 +2,8 @@
 
 Complete the following functions.  Do not change any function signature!
 
+** You MUST use the STL functions to perform the operations.  Each function ```HINTS:``` section will tell you which function to learn to complete the task.  If you do not use that function, you will not earn the points. **
+
 Remember:
 
 - interface for this one is provided for you already in the ```*.h``` file.
