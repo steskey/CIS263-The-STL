@@ -21,3 +21,14 @@ TEST_CASE( "Vector sort test", "[std::sort]" ){
 	sortVec(m);
 	REQUIRE( std::is_sorted(m.begin(), m.end()) );
 }
+
+TEST_CASE( "For-each test", "[for-each]" ){
+	std::vector<int> m(100);
+	std::vector<int> n(m);
+	std::generate(m.begin(), m.end(), []() {return rand() % 1000;});
+	std::copy(m.begin(), m.end(), n.begin());
+	doubleVec(m);
+	for(size_t i=0; i<m.size(); i++){
+		REQUIRE( m[i] == (n[i] * 2) );
+	}
+}
