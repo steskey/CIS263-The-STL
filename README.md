@@ -18,4 +18,16 @@ Remember:
 
 ## Grading
 
+1.  15 Points each problem (5 problems = 75 points).  No points for a problem if you don't use the required functions to complete the task.
 
+2.  15 Additional tests cases (1 point per case, max of three per ```TEST```).
+
+3.  10 Points adhering to [Style Guide](http://www.cis.gvsu.edu/java-coding-style-guide/ "Java Style Guide").  Yes, I know this is a style guide for Java, but we are going to use it anyway.  Other than Javadoc tags the guide still applies.
+
+**Grading Caveats***
+
+1.  Code that doesn't compile on EOS by typing ```make``` from within the project directory automatically loses 25 points.
+
+2.  Code that compiles but has warnings loses 10 points.  We should have zero warnings in our code, even if they are "harmless".
+
+3.  We ALWAYS cite the proper sources.  This means if we find a way to do something by talking to our friend, or if we find some sample code on Stack Overflow, that we document that in the comments of our code.  Code is just like lyrics in a song or words written in a book - it is a creative endeavor and we owe it to others to give credit where it is due.  You will receive a 0 on any work that does not attribute credit.
