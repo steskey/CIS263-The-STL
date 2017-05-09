@@ -16,6 +16,7 @@ Remember:
 2.  ```void sortVec(std::vector<int> & oldVector);``` - Should sort ```oldVector``` in incrementing order using the ```std::sort()``` function.
 3.  ```void doubleVec(std::vector<int> & oldVector);``` - Write a function that doubles every number in ```oldVector```.  The function must use the ```std::for_each``` function.
 4.  ```bool containsItem(std::vector<std::string> & ourVector, std::string item);``` - Using std::find determine if ```item``` is contained within the vector ```ourVector```.
+5.  ```std::vector<int> inBoth(std::vector<int> a, std::vector<int> b);``` - Using std::set_intersection return a new vector that contains all of the elements from ```a``` and ```b```.
 
 ## Grading
 

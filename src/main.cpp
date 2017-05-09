@@ -48,3 +48,15 @@ TEST_CASE( "Contains test", "[contains]" ){
 	CHECK( !containsItem(v, two) );
 	CHECK( containsItem(v, four) );
 }
+
+TEST_CASE( "Intersection test", "[intersection]" ){
+	std::vector<int> a{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+	std::vector<int> b{2, 4, 6, 8, 10, 12, 14, 16, 18};
+	auto c = inBoth(a, b);
+	CHECK( c.size() == 5 );
+	CHECK( c[0] == 2 );
+	CHECK( c[1] == 4 );
+	CHECK( c[2] == 6 );
+	CHECK( c[3] == 8 );
+	CHECK( c[4] == 10 );
+}

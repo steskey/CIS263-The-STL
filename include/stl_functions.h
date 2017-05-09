@@ -33,3 +33,11 @@ void doubleVec(std::vector<int> & oldVector);
  */
 
 bool containsItem(std::vector<std::string> & ourVector, std::string item);
+
+/**
+ * inBoth
+ * Returns a vector that contains only the elements that
+ * are in both of the input parameter vectors.
+ */
+
+std::vector<int> inBoth(std::vector<int> a, std::vector<int> b);
