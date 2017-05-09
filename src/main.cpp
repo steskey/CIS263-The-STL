@@ -12,14 +12,14 @@
 TEST_CASE( "Vector copy test", "[std::copy]" ){
 	std::vector<int> m { 1, 4, 6, 3, 7, 9, 4, 23, 42, 5, 6 };
 	auto n = copyVec(m);
-	REQUIRE( std::equal( m.begin(), m.end(), n.begin()));
+	CHECK( std::equal( m.begin(), m.end(), n.begin()));
 }
 
 TEST_CASE( "Vector sort test", "[std::sort]" ){
 	std::vector<int> m(100);
 	std::generate(m.begin(), m.end(), []() {return rand() % 1000;});
 	sortVec(m);
-	REQUIRE( std::is_sorted(m.begin(), m.end()) );
+	CHECK( std::is_sorted(m.begin(), m.end()) );
 }
 
 TEST_CASE( "For-each test", "[for-each]" ){
@@ -29,6 +29,22 @@ TEST_CASE( "For-each test", "[for-each]" ){
 	std::copy(m.begin(), m.end(), n.begin());
 	doubleVec(m);
 	for(size_t i=0; i<m.size(); i++){
-		REQUIRE( m[i] == (n[i] * 2) );
+		CHECK( m[i] == (n[i] * 2) );
 	}
+}
+
+TEST_CASE( "Contains test", "[contains]" ){
+	std::vector<std::string> v;
+	std::string one("One");
+	std::string two("Two");
+	std::string three("Three");
+	std::string four("Four");
+	std::string five("Five");
+	v.push_back(one);
+	v.push_back(three);
+	v.push_back(five);
+	v.push_back(four);
+	CHECK( containsItem(v, one) );
+	CHECK( !containsItem(v, two) );
+	CHECK( containsItem(v, four) );
 }

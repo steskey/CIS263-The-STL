@@ -27,3 +27,9 @@ void sortVec(std::vector<int> & oldVector);
 
 void doubleVec(std::vector<int> & oldVector);
 
+/**
+ * containsItem
+ * Must use STL std::find
+ */
+
+bool containsItem(std::vector<std::string> & ourVector, std::string item);
