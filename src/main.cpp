@@ -60,3 +60,86 @@ TEST_CASE( "Intersection test", "[intersection]" ){
 	CHECK( c[3] == 8 );
 	CHECK( c[4] == 10 );
 }
+
+// ST 5-14-2017 My tests start below.
+TEST_CASE( "Vector copy test of edge cases", "[std::copy]" ){
+    std::vector<int> emptyVec;
+    auto copiedEmptyVec = copyVec(emptyVec);
+    CHECK( std::equal(emptyVec.begin(), emptyVec.end(), copiedEmptyVec.begin()));
+   
+    std::vector<int> negativeInts {-1, -5, -5, -88, -3, -100, -5};
+    auto copiedNegVec = copyVec(negativeInts);
+    CHECK( std::equal(negativeInts.begin(), negativeInts.end(), copiedNegVec.begin()));
+    
+    std::vector<int> allZeros {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    auto copiedAllZeros = copyVec(allZeros);
+    CHECK( std::equal(allZeros.begin(), allZeros.end(), copiedAllZeros.begin()));
+}
+
+TEST_CASE( "Vector sort test of edge cases", "[std::sort]" ){
+    std::vector<int> emptyVec; 
+    sortVec(emptyVec); 
+    CHECK(0 == emptyVec.size()); // Making sure it was not altered
+    
+    std::vector<int> mixedSigns {2, -99, 0, -1, 99, -51, -50};
+    sortVec(mixedSigns);
+    CHECK(std::is_sorted(mixedSigns.begin(), mixedSigns.end()));
+    bool sorted = true;
+    for(size_t i = 0; i < mixedSigns.size(); ++i){
+        if(i > 0){
+	        if(mixedSigns[i] < mixedSigns[i-1]){
+                sorted = false;
+            }
+        }
+    }
+    CHECK(sorted);
+    
+    mixedSigns.push_back(-2);
+    sortVec(mixedSigns);
+    CHECK(std::is_sorted(mixedSigns.begin(), mixedSigns.end()));
+}
+
+TEST_CASE( "Doubling test edge cases", "[for-each]" ){
+    std::vector<int> emptyVec;
+    doubleVec(emptyVec); 
+    CHECK(0 == emptyVec.size()); // Making sure it was not altered
+    
+    std::vector<int> negativeInts {-11, -1, -5, -2,  -66,  -3, -100, -12};
+    std::vector<int> copiedNegVec(negativeInts);
+    doubleVec(negativeInts);
+    for (size_t i = 0; i < negativeInts.size(); ++i){
+        CHECK(negativeInts[i] == 2*copiedNegVec[i]);
+    }
+    
+    std::vector<int> zerosVec {0,  0,  0,  0,  0};
+    doubleVec(zerosVec);
+    for (auto i : zerosVec)
+    {
+        CHECK(0 == i);
+    }
+}
+
+TEST_CASE( "Contains test extended",  "[contains]" ){
+    std::vector<std::string> myVec {"pizza", "cupcakes", "guac", "bananas"};
+    std::string& pizza = myVec[0];
+    std::string& cupcakes = myVec[1];
+    std::string& guac = myVec[2];
+    std::string& bananas = myVec[3];
+    std::string hamburger("hamburger");
+    
+    CHECK(containsItem(myVec, pizza));
+    CHECK(containsItem(myVec, guac));
+    CHECK(containsItem(myVec, cupcakes));
+    CHECK(containsItem(myVec, bananas));
+    CHECK(!containsItem(myVec, hamburger));
+}
+
+TEST_CASE( "Intersection test extened", "[intersection]" ){
+    std::vector<int> vecA {-7, -5, -3, -6, 4, 0, -2, 55};
+    std::vector<int> vecB {-6, 55, 10, -44, 12};
+    std::vector<int> vecAB = inBoth(vecA, vecB);
+    
+    CHECK(2 == vecAB.size());
+    CHECK(-6 == vecAB[0]);
+    CHECK(55 == vecAB[1]);
+}
