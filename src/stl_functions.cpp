@@ -23,10 +23,14 @@ Sources used:
 http://www.cplusplus.com/reference/algorithm/copy/
 *****************************************************************/
 std::vector<int> copyVec(const std::vector<int> & oldVector){
+    
+    // We first get the size of the passed in oldVector
     size_t SIZE_OF_OLD_VECTOR = oldVector.size();
 
+    // Making a new vector with the same number of ints as oldVector
     std::vector<int> copiedVec(SIZE_OF_OLD_VECTOR);
     
+    // Now the values can be copied in
     std::copy(oldVector.begin(), oldVector.end(), copiedVec.begin());
     
     return copiedVec;
@@ -41,6 +45,8 @@ Sources used:
 http://www.cplusplus.com/reference/algorithm/sort/
 *****************************************************************/
 void sortVec(std::vector<int> & oldVector){
+    
+    // Will sort in ascending order
     std::sort(oldVector.begin(), oldVector.end());
 }
 
@@ -58,6 +64,8 @@ the function call to std::for_each in order to make it more
 readible.
 *****************************************************************/
 void doubleVec(std::vector<int> & oldVector){
+    
+    // This will double whichever int it is applied to
     auto doubleInt = [](int &n){
         n *= 2;
     };
@@ -78,8 +86,11 @@ http://www.cplusplus.com/reference/algorithm/find/
 *****************************************************************/
 bool containsItem(std::vector<std::string> & ourVector, std::string \
 item){
+    
+    // Iterator points at the matching item
     auto it = std::find(ourVector.begin(), ourVector.end(), item);
     
+    // If there is no matching item, it points to the end
     return it != ourVector.end();
 }
 
@@ -101,10 +112,13 @@ http://en.cppreference.com/w/cpp/algorithm/for_each
 I learned lambdas through my co-op.
 *****************************************************************/
 std::vector<int> inBoth(std::vector<int> a, std::vector<int> b){
+    
+    // The max possible size will be the smallest of the 2 vectors
     size_t VEC_MAX_SIZE = a.size() < b.size() ?  a.size() : b.size();
 
     std::vector<int> unitedVec;
     
+    // For efficiency (we won't need a vector larger than this).
     unitedVec.reserve(VEC_MAX_SIZE);
     
     // This lambda puts the int n in unitedVec if found in b

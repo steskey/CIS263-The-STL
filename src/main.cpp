@@ -62,20 +62,32 @@ TEST_CASE( "Intersection test", "[intersection]" ){
 }
 
 // ST 5-14-2017 My tests start below.
+
+
+/*****************************************************************
+Tests the function copyVec() using an empty vector, a vector of
+only negative integers, and a vector of all zeros.
+*****************************************************************/
 TEST_CASE( "Vector copy test of edge cases", "[std::copy]" ){
-    std::vector<int> emptyVec;
-    auto copiedEmptyVec = copyVec(emptyVec);
-    CHECK( std::equal(emptyVec.begin(), emptyVec.end(), copiedEmptyVec.begin()));
+    std::vector<int> eVec;
+    auto eVec2 = copyVec(eVec);
+    CHECK( std::equal(eVec.begin(), eVec.end(), eVec2.begin()));
    
-    std::vector<int> negativeInts {-1, -5, -5, -88, -3, -100, -5};
-    auto copiedNegVec = copyVec(negativeInts);
-    CHECK( std::equal(negativeInts.begin(), negativeInts.end(), copiedNegVec.begin()));
+    std::vector<int> negVec {-1, -5, -5, -88, -3, -100, -5};
+    auto negVec2 = copyVec(negVec);
+    CHECK( std::equal(negVec.begin(), negVec.end(), negVec2.begin()));
     
-    std::vector<int> allZeros {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    auto copiedAllZeros = copyVec(allZeros);
-    CHECK( std::equal(allZeros.begin(), allZeros.end(), copiedAllZeros.begin()));
+    std::vector<int> zeros {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    auto zeros2 = copyVec(zeros);
+    CHECK( std::equal(zeros.begin(), zeros.end(), zeros2.begin()));
 }
 
+
+/*****************************************************************
+Tests the function sortVec() using an empty vector, a vector of
+mixed positive and negative numbers, and finally tacking on an
+extra number to the end of an already sorted vector.
+*****************************************************************/
 TEST_CASE( "Vector sort test of edge cases", "[std::sort]" ){
     std::vector<int> emptyVec; 
     sortVec(emptyVec); 
@@ -99,12 +111,17 @@ TEST_CASE( "Vector sort test of edge cases", "[std::sort]" ){
     CHECK(std::is_sorted(mixedSigns.begin(), mixedSigns.end()));
 }
 
+
+/*****************************************************************
+Tests the function doubleVec() with an empty vector, a vector of
+negative integers, and a vector of all zeros. 
+*****************************************************************/
 TEST_CASE( "Doubling test edge cases", "[for-each]" ){
     std::vector<int> emptyVec;
     doubleVec(emptyVec); 
     CHECK(0 == emptyVec.size()); // Making sure it was not altered
     
-    std::vector<int> negativeInts {-11, -1, -5, -2,  -66,  -3, -100, -12};
+    std::vector<int> negativeInts {-11, -1, -5, -2, -3, -100, -12};
     std::vector<int> copiedNegVec(negativeInts);
     doubleVec(negativeInts);
     for (size_t i = 0; i < negativeInts.size(); ++i){
@@ -119,21 +136,31 @@ TEST_CASE( "Doubling test edge cases", "[for-each]" ){
     }
 }
 
+
+/*****************************************************************
+Testing that containsItem() works on a vector of food item strings.
+References to strings contained in the vector are passed in. A
+string "hamburger" is passed in to make sure "false" is returned.
+*****************************************************************/
 TEST_CASE( "Contains test extended",  "[contains]" ){
-    std::vector<std::string> myVec {"pizza", "cupcakes", "guac", "bananas"};
+    std::vector<std::string> myVec {"pizza", "cupcakes", "guac"};
     std::string& pizza = myVec[0];
     std::string& cupcakes = myVec[1];
     std::string& guac = myVec[2];
-    std::string& bananas = myVec[3];
     std::string hamburger("hamburger");
     
     CHECK(containsItem(myVec, pizza));
     CHECK(containsItem(myVec, guac));
     CHECK(containsItem(myVec, cupcakes));
-    CHECK(containsItem(myVec, bananas));
     CHECK(!containsItem(myVec, hamburger));
 }
 
+
+/*****************************************************************
+Testing that inBoth() works on two vectors of different lengths.
+Checking that the resulting vector is the appropriate size and
+contains only those integers common to both vectors.
+*****************************************************************/
 TEST_CASE( "Intersection test extened", "[intersection]" ){
     std::vector<int> vecA {-7, -5, -3, -6, 4, 0, -2, 55};
     std::vector<int> vecB {-6, 55, 10, -44, 12};
