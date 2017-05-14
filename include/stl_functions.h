@@ -37,7 +37,8 @@ void doubleVec(std::vector<int> & oldVector);
  * Must use STL std::find
  */
 
-bool containsItem(std::vector<std::string> & ourVector, std::string item);
+bool containsItem(std::vector<std::string> & ourVector, std::string \
+item);
 
 /**
  * inBoth

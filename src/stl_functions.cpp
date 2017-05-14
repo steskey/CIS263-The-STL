@@ -24,7 +24,7 @@ http://www.cplusplus.com/reference/algorithm/copy/
 *****************************************************************/
 std::vector<int> copyVec(const std::vector<int> & oldVector){
     size_t SIZE_OF_OLD_VECTOR = oldVector.size();
-    
+
     std::vector<int> copiedVec(SIZE_OF_OLD_VECTOR);
     
     std::copy(oldVector.begin(), oldVector.end(), copiedVec.begin());
@@ -76,7 +76,8 @@ iterator other than ourVector.end().
 Sources used:
 http://www.cplusplus.com/reference/algorithm/find/
 *****************************************************************/
-bool containsItem(std::vector<std::string> & ourVector, std::string item){
+bool containsItem(std::vector<std::string> & ourVector, std::string \
+item){
     auto it = std::find(ourVector.begin(), ourVector.end(), item);
     
     return it != ourVector.end();
