@@ -1,3 +1,8 @@
+#ifndef __H_STL_FUNCTIONS__
+#define __H_STL_FUNCTIONS__
+
+#include <vector>
+#include <string>
 // Hints:  Add an include guard
 // Hints:  Only function signatures in here.
 // Hints:  Don't change ANY of the function signatures.
@@ -41,3 +46,5 @@ bool containsItem(std::vector<std::string> & ourVector, std::string item);
  */
 
 std::vector<int> inBoth(std::vector<int> a, std::vector<int> b);
+
+#endif // __H_STL_FUNCTIONS__
