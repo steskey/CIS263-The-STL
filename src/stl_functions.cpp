@@ -1,84 +1,118 @@
+/*****************************************************************
+For CIS263 HW2. A series of functions that act on std::vector<>s.
+All functions use the STL library as required.
+@author Samantha Teskey
+@version 5-14-2017
+*****************************************************************/
+#include "stl_functions.h"
+#include <algorithm>
+
 // Hint:  Remember to include the *.h file that has the
 // headers for this file.
 //
 // Implementation goes in this file.
-#include "stl_functions.h"
 
-#include <algorithm>
 
-/**
- * copyVec
- * Must use the STL std::copy.
- */
-// Hints:  You need to create a new vector.
-// Hints:  Are they the same size?
+/*****************************************************************
+Uses STL std::copy to create an exact copy of the vector passed
+into the function. A new vector is created using the size of the
+old vector. std::copy iterates through the new vector and copies
+the elements through the provided range of oldVector.
 
+Sources used: 
+http://www.cplusplus.com/reference/algorithm/copy/
+*****************************************************************/
 std::vector<int> copyVec(const std::vector<int> & oldVector){
-    size_t sizeOfOldVector = oldVector.size();
-    std::vector<int> copiedVector(sizeOfOldVector);
+    size_t SIZE_OF_OLD_VECTOR = oldVector.size();
     
-    // http://www.cplusplus.com/reference/algorithm/copy/
-    std::copy(oldVector.begin(), oldVector.end(), copiedVector.begin());
+    std::vector<int> copiedVec(SIZE_OF_OLD_VECTOR);
     
-    return copiedVector;
+    std::copy(oldVector.begin(), oldVector.end(), copiedVec.begin());
+    
+    return copiedVec;
 }
 
-/**
- * sortVec
- * Must use STL std::sort function
- */
 
+/*****************************************************************
+Uses std::sort to put the elements of oldVector in ascending
+order. 
+
+Sources used: 
+http://www.cplusplus.com/reference/algorithm/sort/
+*****************************************************************/
 void sortVec(std::vector<int> & oldVector){
-    // http://www.cplusplus.com/reference/algorithm/sort/
     std::sort(oldVector.begin(), oldVector.end());
 }
 
-/**
- * doubleVec
- * Must use STL std::for_each
- * 
- * 
- */
 
+/*****************************************************************
+Uses std::for_each to double all the integers contained in the
+vector passed in by reference. 
+
+Sources used: 
+http://en.cppreference.com/w/cpp/algorithm/for_each
+In one of the examples, they used a lambda for the function
+object. I used this example, but modified it to double the int 
+rather than just incrementing it. I also defined it outside
+the function call to std::for_each in order to make it more
+readible.
+*****************************************************************/
 void doubleVec(std::vector<int> & oldVector){
-    // http://en.cppreference.com/w/cpp/algorithm/for_each
-    // In one of the examples, they used a lambda for the function object.
-    // I used this example, but modified it to double the int rather 
-    // than just incrementing it
-    std::for_each(oldVector.begin(), oldVector.end(), [](int &n){ n *= 2; } );
+    auto doubleInt = [](int &n){
+        n *= 2;
+    };
+    
+    std::for_each(oldVector.begin(), oldVector.end(), doubleInt);
 }
 
-/**
- * containsItem
- * Must use STL std::find
- */
 
+/*****************************************************************
+Uses std::find to determine if ourVector contains the provided
+std::string item. If std::find cannot locate the item, it returns
+an iterator pointing past the end of the vector. This means that
+the vector contains the item if the result of std::find is an
+iterator other than ourVector.end().
+
+Sources used:
+http://www.cplusplus.com/reference/algorithm/find/
+*****************************************************************/
 bool containsItem(std::vector<std::string> & ourVector, std::string item){
-    // http://www.cplusplus.com/reference/algorithm/find/
-    return std::find(ourVector.begin(), ourVector.end(), item) != ourVector.end();
+    auto it = std::find(ourVector.begin(), ourVector.end(), item);
+    
+    return it != ourVector.end();
 }
 
-/**
- * inBoth
- * Returns a vector that contains only the elements that
- * are in both of the input parameter vectors.
- */
 
+/*****************************************************************
+Creates a vector of ints called unitedVec that only contains the
+ints found in both vector a and vector b. It first reserves the
+max size of the new vector by checking for the smallest vector
+size among a and b. It then creates a lambda function that captures
+a reference to unitedVec and vector b and accepts an integer as
+a paramater. If the integer is found in vector b, we add it to
+unitedVec. We then use this lambda by cycling through vector a
+using std::for_each and calling the function on each element
+of vector a.
+
+Sources used: 
+http://www.cplusplus.com/reference/vector/vector/reserve/
+http://en.cppreference.com/w/cpp/algorithm/for_each
+I learned lambdas through my co-op.
+*****************************************************************/
 std::vector<int> inBoth(std::vector<int> a, std::vector<int> b){
-    size_t vectorMaxSize = a.size() < b.size() ?  a.size() : b.size();
+    size_t VEC_MAX_SIZE = a.size() < b.size() ?  a.size() : b.size();
 
     std::vector<int> unitedVec;
-    // http://www.cplusplus.com/reference/vector/vector/reserve/
-    unitedVec.reserve(vectorMaxSize);
     
-    // Making a lambda here to be used in for_each below
+    unitedVec.reserve(VEC_MAX_SIZE);
+    
     // This lambda puts the int n in unitedVec if found in b
-    auto addToUnitedIfAlsoInB = [b, &unitedVec](int n){ 
+    auto addIfAlsoInB = [&b, &unitedVec](int n){ 
         if (b.end() != std::find(b.begin(),  b.end(), n)){
             unitedVec.push_back(n);
         }
     };
-    std::for_each(a.begin(),  a.end(), addToUnitedIfAlsoInB);
+    std::for_each(a.begin(),  a.end(), addIfAlsoInB);
       
     return unitedVec;
 }
